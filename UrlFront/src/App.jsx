@@ -2,8 +2,6 @@ import OglWaves from './component/wavBg';
 import axios from 'axios';
 import { useState } from 'react';
 import Loading from './component/Loading';
-import dotenv from 'dotenv';
-dotenv.config();
 
 const App = () => {
 
