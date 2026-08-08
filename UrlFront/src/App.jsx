@@ -2,8 +2,10 @@ import OglWaves from './component/wavBg';
 import axios from 'axios';
 import { useState } from 'react';
 import Loading from './component/Loading';
-const App = () => {
+import dotenv from 'dotenv';
+dotenv.config();
 
+const App = () => {
 
   const [url, setUrl] = useState('');
   const [shortUrl, setShortUrl] = useState('');
@@ -18,7 +20,7 @@ const App = () => {
     }
 
 
-    axios.post('http://localhost:1212/api/shorten/', { longURL: url })
+    axios.post(`${import.meta.env.VITE_API_URL}/api/shorten/`, { longURL: url })
       .then((response) => {
         setShortUrl(response.data.shortUrl);
         setUrl('');
@@ -60,7 +62,7 @@ const App = () => {
             <button type='submit' className='bg-white/20 active:scale-95 border-white/20 border-[1.2px] py-2 px-4 w-fit text-center outline-none mt-5 hover:bg-white/30 transition-all duration-75'>Shorten Url</button>
           </form>
         </div>}
-        
+
         {shortUrl && <Loading shortUrl={shortUrl} />}
 
         <h2 className='absolute bottom-0 right-0 font-style: italic p-3 text-white/30'>produced by- prakharg02007-tech</h2>
